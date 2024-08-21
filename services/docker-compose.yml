@@ -1,0 +1,102 @@
+version: '3.1'
+
+services:
+  # --- poke ---
+  poke:
+    container_name: poke_container
+    hostname: poke
+    restart: always
+    build:
+      context: poke
+      args:
+        - PASSWORD=$PASSWORD_10000
+    volumes:
+      - ../receiver/flags/poke.txt:/flag.txt:ro
+      - ../utils/bashrc:/root/.bashrc:ro
+      - ../utils/preexec.sh:/root/.preexec.sh:ro
+    ports:
+      - "10000:80"
+      - "10022:22"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  # --- poke ---
+
+  # --- blinkpdf ---
+  blinkpdf:
+    container_name: blinkpdf_container
+    hostname: blinkpdf
+    restart: always
+    build:
+      context: blinkpdf
+      args:
+        - PASSWORD=$PASSWORD_11000
+    volumes:
+      - ../receiver/flags/blinkpdf.txt:/flag.txt:ro
+      - ../utils/bashrc:/root/.bashrc:ro
+      - ../utils/preexec.sh:/root/.preexec.sh:ro
+    ports:
+      - "11000:5111"
+      - "11022:22"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  # --- blinkpdf ---
+
+  # --- naraka ---
+  naraka:
+    container_name: naraka_container
+    hostname: naraka
+    restart: always
+    build:
+      context: naraka
+      args:
+        - PASSWORD=$PASSWORD_12000
+    volumes:
+      - ../receiver/flags/naraka.txt:/flag.txt:ro
+      - ../utils/bashrc:/root/.bashrc:ro
+      - ../utils/preexec.sh:/root/.preexec.sh:ro
+    ports:
+      - "12000:5000"
+      - "12022:22"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  # --- naraka ---
+
+  # --- wanderer ---
+  wanderer:
+    container_name: wanderer_container
+    hostname: wanderer
+    restart: always
+    build:
+      context: wanderer
+      args:
+        - PASSWORD=$PASSWORD_13000
+    volumes:
+      - ../receiver/flags/wanderer.txt:/flag.txt:ro
+      - ../utils/bashrc:/root/.bashrc:ro
+      - ../utils/preexec.sh:/root/.preexec.sh:ro
+    ports:
+      - "13000:80"
+      - "13022:22"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  # --- wanderer ---
+
+  # --- niko ---
+  niko:
+    container_name: niko_container
+    hostname: niko
+    restart: always
+    build:
+      context: niko
+      args:
+        - PASSWORD=$PASSWORD_15000
+    volumes:
+      - ../receiver/flags/niko.txt:/flag.txt:ro
+      - ../utils/bashrc:/root/.bashrc:ro
+      - ../utils/preexec.sh:/root/.preexec.sh:ro
+    ports:
+      - "15000:8000"
+      - "15022:22"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  # --- niko ---
